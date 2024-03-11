@@ -5,6 +5,7 @@ if(isset($_GET['email']) && isset($_GET['v_code'])){
     $email = $_GET['email'];
     $v_code = $_GET['v_code'];
 
+
     // Query to check if the provided email and verification code match
     $query = "SELECT * FROM `user` WHERE `Email` = '$email' AND `verification_code`= '$v_code'";
     $result = mysqli_query($conn, $query);
@@ -33,7 +34,7 @@ if(isset($_GET['email']) && isset($_GET['v_code'])){
     }
 } else {
     // Handle case where email or verification code is not provided
-    header("Location: loginform.php?error=Email or verification code is missing.");
+    header("Location: manualverify.php?error=Email or verification code is missing.");
     exit();
 }
 ?>
