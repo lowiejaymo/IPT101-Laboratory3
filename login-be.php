@@ -33,7 +33,10 @@ if (isset($_POST['uname']) && isset($_POST['password'])) {
             if (password_verify($pass, $row['password'])) {
                 if ($row['is_verified'] == 0) {
                     // Account is not verified
-                    header("Location: loginform.php?error=Your account is not yet verified, please check your registered email and click the Verify button.");
+                $_SESSION['verify'] = true;
+                $_SESSION['username'] = $row['username'];
+                $_SESSION['email'] = $row['Email'];
+                    header("Location: createdsuccessfully.php?error=Your account is not yet verified, please check your registered email and click the Verify button.");
                     exit;
                 }
                 // The password is correct and the account is verified
