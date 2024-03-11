@@ -79,7 +79,7 @@ function sendMail($email, $v_code)
                         <h1>Thank you for signing up!</h1>
                         <h2>To complete your registration, please verify your account by clicking the button below or manually verifying by copying and paste the code provided below</h2>
                         <h2> Verification Code: $v_code</h2>  
-                        <p><a class='button' href='http://localhost:8080/ipt_laboratory3/verify.php?email=$email&v_code=$v_code' style='text-decoration: none;'>Verify</a></p>
+                        <p><a class='button' href='http://localhost:8080/ipt_laboratory3/manualverify.php?email=$email' style='text-decoration: none;'>Verify</a></p>
 
                     </div>
                 </body>
@@ -112,10 +112,34 @@ if (
     $email = validate($_POST['email']);//assign the processed email to the cariable $email
     $pass = validate($_POST['password']);//assign the processed password to the cariable $pass
     $repass = validate($_POST['repassword']);//assign the processed repassword to the cariable $repass
+    $tandc =  $_POST['tandc'];
+
+    $user_data = 'lname='. $lname. '&fname='. $fname . '&mname='. $mname . '&uname='. $uname . '&email='. $email . '&pass='. $pass . '&repass='. $repass ; 
 
     /****************************** Checking signup credentials ******************************/
-    if ($pass !== $repass) {
-        header("Location: signupform.php?error=Password does not match."); // this will prompt if the password and repassword not match
+    if(empty($lname)){
+        header("Location: signupform.php?error=Lastname is required&$user_data");
+	    exit();
+	}else if(empty($fname)){
+        header("Location: signupform.php?error=Firstname is required&$user_data");
+	    exit();
+	}elseif (empty($uname)) {
+		header("Location: signupform.php?error=User Name is required&$user_data");
+	    exit();
+	}else if(empty($email)){
+        header("Location: signupform.php?error=Email is required&$user_data");
+	    exit();
+	}else if(empty($pass)){
+        header("Location: signupform.php?error=Password is required&$user_data");
+	    exit();
+	}else if(empty($repass)){
+        header("Location: signupform.php?error=Re Password is required&$user_data");
+	    exit();
+	}else if(empty($tandc)){
+        header("Location: signupform.php?error=You must agree with terms and condition&$user_data");
+	    exit();
+	}elseif ($pass !== $repass) {
+        header("Location: signupform.php?error=Password does not match&$user_data"); // this will prompt if the password and repassword not match
         exit();
     } else {
         $sql = "SELECT * FROM user WHERE username='$uname'"; // this SQL query use to select all records from the user table where the username matches the submitted uname
@@ -124,14 +148,14 @@ if (
         $hashed_pass = password_hash($pass, PASSWORD_BCRYPT); // it will hash the password using BYCRYP algorithm and store the hashed password in the variable $hashed_pass
 
         if (mysqli_num_rows($result) > 0) {
-            header("Location: signupform.php?error=Username is already taken."); // this error will prompt when the input username was already registered 
+            header("Location: signupform.php?error=Username is already taken.&$user_data"); // this error will prompt when the input username was already registered 
             exit();
         } else {
             $sql_email = "SELECT * FROM user WHERE Email='$email'";// this SQL query use to select all records from the user table where the Email matches the submitted email
             $result_email = mysqli_query($conn, $sql_email);
 
             if (mysqli_num_rows($result_email) > 0) {
-                header("Location: signupform.php?error=Email address is already taken.");// this error will prompt when the input email was already registered 
+                header("Location: signupform.php?error=Email address is already taken.&$user_data");// this error will prompt when the input email was already registered 
                 exit();
             } else {
                 $v_code = rand(100000, 999999); // it will generate random 6 digit number
