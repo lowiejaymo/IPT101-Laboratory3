@@ -37,86 +37,151 @@
                 <label for="Fullname" class="fw-bold">Fullname</label>
                 <!-- col-md-4 used to define the column width -->
                 <!-- Lastname input -->
+                
                 <div class="col-md-4">
-                    <input type="text" 
-                        class="form-control" 
-                        name="lastname" 
-                        placeholder="Last Name*"
-                        pattern="^[^0-9]+$"
-                        title="Numbers are not allowed in this field"
-                        required='required';>
+                    <?php if (isset($_GET['lname'])) { ?>
+                        <input type="text" 
+                               class="form-control" 
+                               name="lastname" 
+                               placeholder="Last Name*"
+                               pattern="^[^0-9]+$" 
+                               title="Numbers are not allowed in this field"
+                               value="<?php echo $_GET['lname']; ?>">
+                    <?php } else { ?>
+                        <input type="text" 
+                               class="form-control" 
+                               name="lastname" 
+                               placeholder="Last Name*"
+                               pattern="^[^0-9]+$"
+                               title="Numbers are not allowed in this field"
+                               >
+                    <?php } ?>
                 </div>
                 <!-- col-md-4 used to define the column width -->
                 <!-- Firstname input -->
                 <div class="col-md-4">
-                    <input type="text" 
-                        class="form-control" 
-                        name="firstname" 
-                        placeholder="First Name*"
-                        pattern="^[^0-9]+$"
-                        title="Numbers are not allowed in this field"
-                        required='required';>
+                    <?php if (isset($_GET['fname'])) { ?>
+                        <input type="text" 
+                               class="form-control" 
+                               name="firstname" 
+                               placeholder="First Name*"
+                               pattern="^[^0-9]+$" 
+                               title="Numbers are not allowed in this field"
+                               value="<?php echo $_GET['fname']; ?>">
+                    <?php } else { ?>
+                        <input type="text" 
+                               class="form-control" 
+                               name="firstname" 
+                               placeholder="First Name*"
+                               pattern="^[^0-9]+$"
+                               title="Numbers are not allowed in this field"
+                               >
+                    <?php } ?>
                 </div>
                 <!-- col-md-4 used to define the column width -->
                 <!-- Middlename input -->
                 <div class="col-md-4">
-                    <input type="text" 
-                        class="form-control" 
-                        name="middlename" 
-                        pattern="^[^0-9]+$" 
-                        title="Numbers are not allowed in this field"
-                        placeholder="Middle Name">
+                    <?php if (isset($_GET['mname'])) { ?>
+                        <input type="text" 
+                               class="form-control" 
+                               name="middlename" 
+                               placeholder="Middle Name"
+                               pattern="^[^0-9]+$" 
+                               title="Numbers are not allowed in this field"
+                               value="<?php echo $_GET['mname']; ?>">
+                    <?php } else { ?>
+                        <input type="text" 
+                               class="form-control" 
+                               name="middlename" 
+                               placeholder="Middle Name*"
+                               pattern="^[^0-9]+$"
+                               title="Numbers are not allowed in this field"
+                               >
+                    <?php } ?>
                 </div>
-            </div>
+               
 
             <!-- mb-3 used to to apply the margin border -->
             <div class="mb-3">
                 <!-- fw-bold used to make the label 'User Name' into bold -->
                 <!-- Username input -->
                 <label for="User Name" class="fw-bold">User Name</label>
-                <input type="text" 
-                    class="form-control" 
-                    name="uname" 
-                    placeholder="User Name*"
-                    required='required';>
+                <?php if (isset($_GET['uname'])) { ?>
+                        <input type="text" 
+                               class="form-control" 
+                               name="uname" 
+                               placeholder="User Name*"
+                               value="<?php echo $_GET['uname']; ?>">
+                    <?php } else { ?>
+                        <input type="text" 
+                               class="form-control" 
+                               name="uname" 
+                               placeholder="User Name*"
+                               >
+                    <?php } ?>
+              
             </div>
             <!-- mb-3 used to to apply the margin border -->    
             <!-- email address input -->
             <div class="mb-3">
                 <!-- fw-bold used to make the label 'Email Address' into bold -->
                 <label for="Email Address" class="fw-bold">Email Address</label>
-                <input type="email" 
-                    class="form-control" 
-                    name="email" 
-                    placeholder="Email Address*"
-                    required='required';>
+                <?php if (isset($_GET['email'])) { ?>
+                        <input type="email" 
+                               class="form-control" 
+                               name="email" 
+                               placeholder="Email Address*"
+                               value="<?php echo $_GET['email']; ?>">
+                    <?php } else { ?>
+                        <input type="email" 
+                               class="form-control" 
+                               name="email" 
+                               placeholder="Email Address*"
+                               >
+                    <?php } ?>
             </div>
             <!-- mb-3 used to to apply the margin border -->
             <div class="mb-3">
                 <!-- fw-bold used to make the label 'Password' into bold -->
                 <!-- Password input -->
                 <label for="Password" class="fw-bold">Password</label>
-                <input type="password" 
-                    class="form-control" 
-                    name="password" 
-                    placeholder="Password*"
-                    required='required';>
+                <?php if (isset($_GET['pass'])) { ?>
+                        <input type="password" 
+                               class="form-control" 
+                               name="password" 
+                               placeholder="Password*"
+                               value="<?php echo $_GET['pass']; ?>">
+                    <?php } else { ?>
+                        <input type="password" 
+                               class="form-control" 
+                               name="password" 
+                               placeholder="Password*"
+                               >
+                    <?php } ?>
             </div>
             <!-- mb-3 used to to apply the margin border -->
             <div class="mb-3">
                 <!-- fw-bold used to make the label 'Retype Password' into bold -->
                 <!-- Retype Password input -->
                 <label for="Retype Password " class="fw-bold">Retype Password</label>
-                <input type="password" 
-                    class="form-control" 
-                    name="repassword" 
-                    placeholder="Retype Password"
-                    required='required';>
+                <?php if (isset($_GET['repass'])) { ?>
+                        <input type="password" 
+                               class="form-control" 
+                               name="repassword" 
+                               placeholder="Retype Password*"
+                               value="<?php echo $_GET['repass']; ?>">
+                    <?php } else { ?>
+                        <input type="password" 
+                               class="form-control" 
+                               name="repassword" 
+                               placeholder="Retype Password*"
+                               >
+                    <?php } ?>
             </div>
             <!-- mb-3 used to to apply the margin border -->
             <!-- T&C has been set to required but no T&C yet -->
             <div class="mb-3 form-check">
-                <input type="checkbox" class="form-check-input"  required='required'>
+                <input type="checkbox" class="form-check-input"  name='tandc'>
                 <label class="form-check-label" for="tac"  >Accept Terms and Condition</label>
             </div>
             
