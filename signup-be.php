@@ -114,7 +114,7 @@ if (
     $repass = validate($_POST['repassword']);//assign the processed repassword to the cariable $repass
     $tandc =  $_POST['tandc'];
 
-    $user_data = 'lname='. $lname. '&fname='. $fname . '&mname='. $mname . '&uname='. $uname . '&email='. $email . '&pass='. $pass . '&repass='. $repass ; 
+    $user_data = 'lname='. $lname. '&fname='. $fname . '&mname='. $mname . '&uname='. $uname . '&email='. $email; 
 
     /****************************** Checking signup credentials ******************************/
     if(empty($lname)){
